@@ -6,11 +6,12 @@ const SETTING = require('../settings');
 const MESSAGE = require('../messages');
 
 const PORT = process.env.PORT || SETTING.port || 3000;
+const ENV = process.env.NODE_ENV || SETTING.runningEnv || 'development';
 const PROTOCOL = ( SETTING.https )? 'https' : 'http';
 
 var startMessage = `===== ${MESSAGE.start} =====` + '\n' +
     new Date().toLocaleString() + '\n' +
-    `${MESSAGE.runningEnv}: ${SETTING.runningEnv}` + '\n' +
+    `${MESSAGE.runningEnv}: ${ENV}` + '\n' +
     `${MESSAGE.protocol}: ${PROTOCOL}` + '\n' +
     `${MESSAGE.portListen}: ${PORT}` + '\n' +
     '===================' + '\n';
@@ -47,7 +48,7 @@ module.exports = function(app) {
         return( new Date().toLocaleString() );
     });
 
-    if (app.settings.env === 'development') {
+    if (ENV === 'development') {
         process.stdout.write(startMessage);
         app.use(logger('[:date] :remote-addr :remote-user ' +
             ':method :url HTTP/:http-version :status ' +
