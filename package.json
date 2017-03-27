@@ -1,10 +1,12 @@
 {
   "name": "scarff",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A web engine module",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "NODE_ENV=development node app.js",
+    "pro": "NODE_ENV=production node app.js",
     "test": "grunt"
   },
   "author": "Corvus",
@@ -17,6 +19,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
     "file-stream-rotator": "0.0.7",
+    "helmet": "^3.5.0",
     "moment": "^2.17.1",
     "morgan": "^1.7.0"
   },

@@ -40,7 +40,8 @@ if ( SETTING.https ){
 
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.disable('x-powered-by');
+
+app.use(helmet());
 
 // Handlebars view engine
 // https://github.com/ericf/express-handlebars
