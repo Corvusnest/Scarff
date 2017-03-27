@@ -9,6 +9,7 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const compression = require('compression');
 const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 
 // Setting Document
 const SETTING = require('./settings');
@@ -41,7 +42,9 @@ if ( SETTING.https ){
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(helmet());
+app.use(favicon(path.join(__dirname, 'public/icon/favicon.png')))
+
+app.use(require('helmet')());
 
 // Handlebars view engine
 // https://github.com/ericf/express-handlebars
