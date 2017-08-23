@@ -6,6 +6,7 @@ module.exports = {
     // using https
     https: false,
     // if you are using https, you should set the path of ssl/tls key and cert
+    // openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
     httpsKey: 'https/key.pem',
     httpsCert: 'https/cert.pem',
     httpsPassphrase: '[Your passphrase]',
