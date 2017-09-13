@@ -22,8 +22,8 @@ app.set('env', ENV);
 
 if ( SETTING.https ){
     // using HTTPS
-    let keyPath = path.join(__dirname, SETTING.httpsKey);
-    let certPath = path.join(__dirname, SETTING.httpsCert);
+    let keyPath = SETTING.httpsKey;
+    let certPath = SETTING.httpsCert;
     if ( !fs.existsSync(keyPath) || !fs.existsSync(certPath) ){
         console.error(MESSAGE.keypairError);
         process.exit();
@@ -34,6 +34,10 @@ if ( SETTING.https ){
         passphrase: SETTING.httpsPassphrase,
     };
     https.createServer(options, app).listen(PORT);
+    http.createServer(function (req, res) {
+        res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+        res.end();
+    }).listen(80);
 } else {
     // using HTTP
     http.createServer(app).listen(PORT);
